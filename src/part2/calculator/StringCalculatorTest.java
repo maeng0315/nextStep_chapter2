@@ -2,16 +2,17 @@ package part2.calculator;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
-    private StringCalculator cal;
+//    private StringCalculator cal;
+    private StringCalculatorBook cal;
 
     @Before
     public void setup() {
-        cal = new StringCalculator();
+//        cal = new StringCalculator();
+        cal = new StringCalculatorBook();
     }
 
     @Test
@@ -20,6 +21,7 @@ public class StringCalculatorTest {
         assertEquals(0, cal.add(" "));
         assertEquals(0, cal.add(null));
     }
+
 
     @Test
     public void 숫자_0_입력() {
@@ -31,6 +33,12 @@ public class StringCalculatorTest {
     public void 음수_입력() {
         assertThrows(RuntimeException.class, () -> cal.add("-9,2"));
         assertThrows(RuntimeException.class, () -> cal.add("-1,2,3"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void 음수_입력2() {
+        cal.add("-9,2");
+        cal.add("-1,2,3");
     }
 
     @Test
