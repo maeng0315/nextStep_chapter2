@@ -14,50 +14,44 @@ public class StringCalculatorTest {
         cal = new StringCalculator();
     }
 
-    @DisplayName("공백 입력")
     @Test
-    public void empty() {
+    public void 공백_입력() {
         assertEquals(0, cal.add(""));
         assertEquals(0, cal.add(" "));
+        assertEquals(0, cal.add(null));
     }
 
-    @DisplayName("0 입력")
     @Test
-    public void zero() {
+    public void 숫자_0_입력() {
         assertEquals(0, cal.add("0"));
         assertEquals(3, cal.add("1,2,0"));
     }
 
-    @DisplayName("음수 입력")
     @Test
-    public void negative() {
-        assertThrows(RuntimeException.class, () -> cal.add("1,-2"));
+    public void 음수_입력() {
+        assertThrows(RuntimeException.class, () -> cal.add("-9,2"));
         assertThrows(RuntimeException.class, () -> cal.add("-1,2,3"));
     }
 
-    @DisplayName("기본(쉼표) 구분자")
     @Test
-    public void comma_delimiter() {
+    public void 쉼표_구분자() {
         assertEquals(3, cal.add("1,2"));
         assertEquals(6, cal.add("1,2,3"));
     }
 
-    @DisplayName("기본(콜론) 구분자")
     @Test
-    public void colon_delimiter() {
+    public void 콜론_구분자() {
         assertEquals(3, cal.add("1:2"));
         assertEquals(6, cal.add("1:2:3"));
     }
 
-    @DisplayName("기본(쉼표, 콜론) 구분자 혼합")
     @Test
-    public void comma_colon_delimiter() {
+    public void 쉼표_콜론_혼합_구분자() {
         assertEquals(6, cal.add("1,2:3"));
     }
 
-    @DisplayName("기본(쉼표, 콜론) 구분자 혼합")
     @Test
-    public void coustom_delimiter() {
+    public void 사용자_지정_구분자() {
         assertEquals(6, cal.add("//!\n1!2!3"));
     }
 }
